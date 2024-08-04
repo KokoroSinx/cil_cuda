@@ -1,0 +1,456 @@
+{
+    "UNITS": {
+        "LENGTH": 1,
+        "MOTILITY": 1,
+        "FRICTION": 1
+    },
+    "MD": {
+        "DIM": 2,
+        "GTS": 40000,
+        "FRAMES": 135,
+        "DT": {
+            "SELECT": "MANUAL",
+            "AUTOSCALE": 0.025,
+            "MANUAL": 2.5e-06
+        },
+        "BOX": [
+            640,
+            640
+        ],
+        "PBC": [
+            true,
+            true
+        ],
+        "DRAIN": true,
+        "INTEGRATOR": {
+            "SELECT": "EULER",
+            "EULER": {},
+            "STOCHASTIC_EULER": {},
+            "STOCHASTIC_HEUN": {},
+            "DPD": {
+                "DISSAMCEL": 0,
+                "DISDIFCEL": 0,
+                "DISBG": 0
+            }
+        },
+        "TEMP": 0,
+        "OSMOTIC_PRESSURE": 0,
+        "KBT": 0.003,
+        "TAU_VE": 0.01
+    },
+    "RUNTIME": {
+        "LINKLIST": {
+            "STENCIL": false,
+            "ENABLED": true,
+            "SORTED": true
+        },
+        "RNG": {
+            "SEED": 408
+        }
+    },
+    "OUTPUT": {
+        "DIR": "output/",
+        "NAME": "cil",
+        "FORMAT": [
+            "H5",
+            "GSD"
+        ],
+        "ENERGY_RECORD": false,
+        "DIV_APP_RECORD": true
+    },
+    "SPECIES": {
+        "DEFINE": [
+            "C1"
+        ],
+        "C1": {
+            "NAMES": [
+        "FRONT"
+      ],
+            "MOTILITY": [
+        0
+      ],
+            "FRICTION": [
+                0.0001
+      ],
+            "P_FRICTION": [
+        0
+      ],
+            "P_FRICTION_BETA": [
+                0
+      ],
+            "FRICTION_STATIC_VEL": [
+                0
+      ],
+            "FRICTION_STATIC_FORCE": [
+                0
+      ],
+            "MASS": [
+                1
+      ],
+            "EXTFORCE": [
+                0,
+        0
+      ],
+            "ROD_RADIUS": [
+                0.1
+      ],
+            "SHAPE": false,
+            "NOISE": {
+                "PASSIVE": 0.0,
+        "RADIAL": 0.0,
+        "ANGULAR": 0.0
+      },
+            "PAIRFORCES": {
+                "LJ": {
+          "SIGMA": [
+            1
+          ],
+          "EPSILON": [
+            2.5e-05
+          ],
+          "SIGMA_THETA": [
+            0
+          ]
+        },
+        "SC": {
+          "SIGMA_MIN": [
+            0.9
+          ],
+          "SIGMA_CORE": [
+            1
+          ],
+          "SIGMA_THETA": [
+            0
+          ],
+          "SIGMA_MAX": [
+            1.1
+          ],
+          "EPSILON_CORE": [
+            1
+          ],
+          "SIGMA_RATIO": [
+            1
+          ],
+          "EPSILON_RATIO": [
+            0.1
+          ]
+        },
+        "HZ": {
+          "ELASTIC_MODULUS": [
+            100
+          ],
+          "POISSON_RATIO": [
+            0.5
+          ],
+          "SIGMA_THETA": [
+            0
+          ],
+          "SIGMA_CORE": [
+            1.1283791670955126
+          ],
+          "ADHESION_CONSTANT": [
+            0.2
+          ]
+        },
+        "EA": {
+          "ELASTIC_MODULUS": [
+            100
+          ],
+          "POISSON_RATIO": [
+            0.5
+          ],
+          "SIGMA_THETA": [
+            0
+          ],
+          "SIGMA_CORE": [
+            1.1283791670955126
+          ],
+          "ADHESION_CONSTANT": [
+            0.2
+          ]
+        }
+      },
+            "FENE": {
+                "KAPPA_PULL": [
+          0.2
+        ],
+        "KAPPA_PUSH": [
+          0.5
+        ],
+        "SPRING_RATIO": [
+          0
+        ],
+        "RMAX": [
+          1
+        ],
+        "RMAX_DIVISION": [
+          1
+        ]
+      },
+            "DIVISION": {
+                "ENABLED": true,
+        "CONST_FORCE": false,
+        "SWELLING": false,
+        "SWELLING_INTER": false,
+        "TAU_MIGRATION": {
+          "AVG": 0.0,
+          "SIGMA": 0.0
+        },
+        "TAU_DIVISION": {
+          "AVG": 1,
+          "SIGMA": 0.1
+        },
+        "R0": 0.05,
+        "Rmin": 0.85,
+        "Rmin_RATIO": 0,
+        "SIGMA_BIRTH_RATIO": 1,
+        "SIGMA_DIVISION_MIN": 1,
+        "V1": 35,
+        "CYCLE_GAMMA": 1,
+        "CYCLE_TAU_R": 1.0,
+        "CYCLE_TAU_V": 1,
+        "CYCLE_TAU_P": 0,
+        "CYCLE_SIGMA_DIV": 0,
+        "CYCLE_SIGMA_MIN": 1.1283791670955126,
+        "CYCLE_P0": 5,
+        "CYCLE_BETA_VS": 0,
+        "CYCLE_RHO_RATIO": 1
+      },
+            "APOPTOSIS": {
+                "ENABLED": false,
+        "APOP_PRESSURE": 1,
+        "APOP_DURATION": 8,
+        "APOP_RATE": 0,
+        "APOP_ACTIVITY_ALPHA": 1,
+        "APOP_GAMMA": 8,
+        "EXTR_RATE": 0.1,
+        "EXTR_GAMMA": 0
+      },
+            "NELEM": 1,
+            "CROSS_ADHESION": 0
+    }
+    },
+    "INTERACTIONS": {
+        "PAIRFORCES": {
+            "SELECT": "HZ",
+            "LJ": {
+                "ATTRACTION": {
+                    "SELECT": "ON",
+                    "ON": {
+                        "RCUT": 1.5,
+                        "SHIFT": "FORCE",
+                        "DOMAIN": {
+                            "SELECT": "ALL",
+                            "ALL": {},
+                            "SPECIES": [
+                                [
+                                    "A",
+                                    "A"
+                                ]
+                            ],
+                            "ELEMENTS": [
+                                [
+                                    [
+                                        "A",
+                                        "BACK"
+                                    ],
+                                    [
+                                        "B",
+                                        "TRACER"
+                                    ]
+                                ]
+                            ]
+                        }
+                    },
+                    "OFF": {}
+                }
+            },
+            "SC": {},
+            "HZ": {},
+            "EA": {},
+            "GHOSTS": {}
+        },
+        "WALLS": {
+            "DEFINE": [],
+            "INNER": {
+                "TYPE": "CIRCULAR",
+                "ORIGIN": [
+                    15.0,
+                    15.0
+                ],
+                "RADIUS": 10,
+                "EPSILON": 1.0,
+                "DIRECTION": "NEGATIVE",
+                "ATTRACTIVE": false
+            },
+            "OUTER": {
+                "TYPE": "CIRCULAR",
+                "ORIGIN": [
+                    25.0,
+                    25.0,
+                    25.0
+                ],
+                "RADIUS": 5.0,
+                "EPSILON": 0.001,
+                "DIRECTION": "NEGATIVE",
+                "ATTRACTIVE": false
+            },
+            "H_SLAB": {
+                "TYPE": "H_SLAB",
+                "DIRECTION": "X",
+                "ORIGIN": 15,
+                "EPSILON": 5,
+                "RCUT": 10,
+                "ATTRACTIVE": false
+            },
+            "SLAB0": {
+                "TYPE": "SLAB",
+                "DIRECTION": "X",
+                "ORIGIN": [
+                    0,
+                    1
+                ],
+                "EPSILON": 0.1,
+                "ATTRACTIVE": false,
+                "RCUT": 0.01
+            },
+            "SLAB1": {
+                "TYPE": "SLAB",
+                "DIRECTION": "X",
+                "ORIGIN": [
+                    0,
+                    1
+                ],
+                "EPSILON": 0.1,
+                "ATTRACTIVE": false,
+                "RCUT": 0.01
+            },
+            "DRAIN0": {
+                "TYPE": "P_SLAB",
+                "DIRECTION": "Y",
+                "ORIGIN": [
+                    0,
+                    9
+                ],
+                "ENDPOINTS": [
+                    0,
+                    9
+                ],
+                "UPPER_LOWER": [
+                    true,
+                    false
+                ],
+                "EPSILON": 500,
+                "ATTRACTIVE": false,
+                "RCUT": 0.49
+            },
+            "DRAIN1": {
+                "TYPE": "P_SLAB",
+                "DIRECTION": "Z",
+                "ORIGIN": [
+                    1,
+                    3
+                ],
+                "ENDPOINTS": [
+                    0,
+                    5.01
+                ],
+                "UPPER_LOWER": [
+                    true,
+                    false
+                ],
+                "EPSILON": 2,
+                "ATTRACTIVE": false,
+                "RCUT": 0.49
+            },
+            "DRAIN2": {
+                "TYPE": "P_SLAB",
+                "DIRECTION": "Y",
+                "ORIGIN": [
+                    0,
+                    2.5
+                ],
+                "ENDPOINTS": [
+                    7.5,
+                    10
+                ],
+                "UPPER_LOWER": [
+                    false,
+                    true
+                ],
+                "EPSILON": 50,
+                "ATTRACTIVE": false,
+                "RCUT": 2.5
+            },
+            "DRAIN3": {
+                "TYPE": "P_SLAB",
+                "DIRECTION": "X",
+                "ORIGIN": [
+                    7.5,
+                    10
+                ],
+                "ENDPOINTS": [
+                    0,
+                    2.5
+                ],
+                "UPPER_LOWER": [
+                    true,
+                    false
+                ],
+                "EPSILON": 1,
+                "ATTRACTIVE": false,
+                "RCUT": 2.5
+            },
+            "DRAIN4": {
+                "TYPE": "P_SLAB",
+                "DIRECTION": "X",
+                "ORIGIN": [
+                    7.5,
+                    10
+                ],
+                "ENDPOINTS": [
+                    7.5,
+                    10
+                ],
+                "UPPER_LOWER": [
+                    true,
+                    false
+                ],
+                "EPSILON": 1,
+                "ATTRACTIVE": false,
+                "RCUT": 2.5
+            }
+        }
+    },
+    "INIT": {
+        "C1": {
+            "SELECT": "JSON",
+            "H5": {
+                "SELECT": "ALL",
+                "ALL": [
+                    "xx",
+                    "R",
+                    "Vel",
+                    "State",
+                    "Theta",
+                    "RHO",
+                    "SigmaCore"
+                ],
+                "LOCATION": [
+                    "output.nosync/singleParticle/HZ/Last/4_1_P0d1_DPD1.Last.h5",
+                    "R"
+                ],
+                "RANGE": []
+            },
+            "JSON": [
+                [
+                    320,
+                    320
+                ]
+      ],
+            "RANDOM": {
+                "NUMBER": 10
+            }
+        }
+    }
+}

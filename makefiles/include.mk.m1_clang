@@ -1,0 +1,13 @@
+# Use with homebrew installed boost/hdf5/voro++
+export CC  = clang
+export CXX = clang++
+export HDF_DIR = /usr/local
+export CFLAGS  = -Ofast -Wall -Wno-unknown-pragmas -Wfatal-errors\
+       	       	 -DWITHOUT_MPI -D__ArrayExtensions -D__NOARRAY2OPT \
+		 -fomit-frame-pointer -fstrict-aliasing -Wstrict-aliasing=2 -ffast-math \
+		 -DDSFMT_MEXP=19937 \
+		 -I$(HDF_DIR)/include -I/opt/homebrew/include
+Export CFLAGSMT= -O3 -fno-strict-aliasing \
+       		 d-DDSFMT_MEXP=19937 -DNDEBUG
+export CXXFLAGS = -std=c++11 $(CFLAGS)
+export LINKS    = -L$(HDF_DIR)/lib -L/opt/homebrew/lib -lhdf5_hl -lhdf5 -lm

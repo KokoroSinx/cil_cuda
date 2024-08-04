@@ -1,0 +1,192 @@
+/*!
+\page page_input Input files
+
+The input file contains all parameters and information necessary for starting a simulation run. The files have to be formatted in json. The parameters are grouped roughly.
+
+The simulation expects you to define species in SPECIES. Each species defines for instance a type of particle or cell. Each species can currently consist of one or two elements. If a species consists of two elements, they are connected by a spring. The simulation then creates as many instances of each species as specified in the INIT group.
+
+
+\section UNITS
+
+
+\section MD
+
+"GTS" is an integer which determines the interval between output frames in terms of timesteps. For instance, a value of 5 means that a new frame is recorded every 5 timesteps.
+
+"FRAMES" is an integer determining how many frames are stored. The product of "GTS" and "FRAMES" determines the total number of timesteps for the simulation.
+
+"DT" is a subsection which determines the timestep.
+
+"BOX" is an array which contains the dimensions of the simulation's bounding box in units of "LENGTH".
+
+"PBC" is an array of booleans describing in which of the box's dimensions the boundaries are periodic. 
+
+"INTEGRATOR" is a list of available integrators, in the "SELECT" option, choose one. 
+
+Note: DPD method specially require additional DPD parameters: 
+
+	DISSAMCEL: the strength of dissipative force between two elements 			within one cell
+	DISDIFCEL: the strength of dissipative force between different 			cells
+	DISBG:     the strength of dissipative force between cell and 				background
+
+"KBT" is a double determining the value of constant of Boltzmann multiply temperature. It’s a necessary value for DPD simulation.
+
+
+
+\section RUNTIME
+
+\section OUTPUT
+
+"ENERGY_RECORD": true or false. Determines whether the energy of the system is calculated and output or not.
+
+"DIV_APP_RECORD": true or false. Determines whether the position and time of the divided/dead cells are recorded and output or not.
+
+\section SPECIES
+
+"DEFINE" has to contain an array with the names of the species defined in the input file, for instance "DEFINE" : ["A", "B"], or "DEFINE" : ["CELLS", "TRACERS"].
+
+For each string in the array for "DEFINE", define a subgroup which contains the following keys:
+
+"NELEM": number of elements to each instance. Currently either 1 or 2.
+
+"NAMES": Names for the elements. These names can then be used in the "INTERACTIONS" group to modify the interactions.
+
+"CIL": true or false. Determines whether the motility force is contact inhibited or not.
+
+"CROSS_ADHESION": The strength of attraction force between different type of cells. If zero, which means no attraction force between different type of cells. If one, which means attraction force between different type of cells is same as the attraction within the same type of cells. If larger than one, which means attraction force between different type of cells is stronger than the attraction within the same type of cells.
+
+
+"MOTILITY" : array of motility constants, one for each element.
+
+When binary cells are trying to divide, we apply motility forces to both elements. The amplitude of this force is controlled by three parameters k0:
+"GROWTHK0", k1:"GROWTHK1", k2:"GROWTHK2" and given by (k0*feneDivMax + k1*r + k2*r^2), r is the distance between the two elements within a cell.
+ 
+"FRICTION" : array of friction constants, one for each element.
+
+"NOISE"    : array of noise constants, one for each element.
+
+"EXTFORCE" : ??
+
+"PAIRFORCES" is a subgroup containing the parameters of the pair forces. At present, we accept parameters for Lennard-Jones (LJ), soft-core (SC), Hertzian contact (HZ) and EA forces. To provide those parameters, create a subgroup named  "LJ", "SC", "HZ", or "EA" and, contained within, the following arrays:
+
+For "LJ" define the radius of the particles in "SIGMA", and the energy scales in "EPSILON".
+
+For "SC", define the maximum potential energy with "EPSILON_CORE", the position of the energy minimum with "SIGMA_CORE", the depth of the energy minimum in respect to the maximum with "EPSILON_RATIO", and the width of the potential well is given in units of "SIGMA_CORE" by "SIGMA_RATIO". "SIGMA_RATIO" thus determines also the  steepness of the transition between maximum and minimum.
+
+TODO Fill in info for the HZ and EA forces.
+
+Note: Make sure to select the appropriate potential in INTERACTIONS::PAIRFORCES::SELECT.
+
+CAVEAT: If the cell cycle volume regulation is enabled, i.e. if "DIVISION" is enabled, then the value of "SIGMA_CORE" given here is irrelevant for the sizes of the cells, as they will be dynamically determined. The linked list uses V1 to make an estimate of the optimal linklist cell size, but if you know that the cells can become much larger than V1, e.g. due to negative stresses, then it's possible to increase the linklist cell size by entering a value for "SIGMA_CORE" that reflects the actual maximum diameter of the elements.
+
+TODO
+
+"FENE" is a subgroup containing the parameters of the spring connecting the two elements.
+
+"DIVISION" is a subgroup containing the parameters for the cell division.
+
+"APOPTOSIS" is an optional subgroup containing the parameters for cell death. If defined, this group has to contain a boolean called "ENABLED" and a number "RATE" which defines the apoptosis rate of that species in unit 1/[time].
+
+\section INTERACTIONS
+
+INTERACTIONS defines all the interactions between elements and the interactions of elements with walls.
+
+\subsection input_interactions_pairforces INTERACTIONS::PAIRFORCES
+
+INTERACTIONS::PAIRFORCES defines the pairwise forces acting between elements.
+
+Currently, we have implemented three types of interaction. To choose between them, set "SELECT" to "LJ" for Lennard-Jones forces, "SC" for Soft-Core forces, or "GHOSTS" for no interaction. In addition, make sure to adjust the parameters in the corresponding subgroup named either "LJ" or "SC". The length and energy scales for the forces can be different for each species and therefore have to be set in the corresponding SPECIES groups.
+
+The elements of the same instance currently only interact via the spring force and are not influenced by the pair forces you set here.
+
+
+\subsubsection input_interactions_pairforces_lj INTERACTIONS::PAIRFORCES::LJ
+
+\subsubsection input_interactions_pairforces_lj_attraction INTERACTIONS::PAIRFORCES::LJ::ATTRACTION
+
+The subgroup "ATTRACTION" contains the information on whether the attractive part of the potential is set on or off and which conditions apply if it is set on. To turn on or off the attractive part, set "SELECT" to "ON" or "OFF". If "SELECT" : "ON", make sure to set further conditions in the "ON" subgroup.
+
+\subsubsection input_interactions_pairforces_lj_attraction_on INTERACTIONS::PAIRFORCES::LJ::ATTRACTION::ON
+
+"RCUT" sets the cutoff distance for the force for each combination of elements in units of the
+\f$\sigma_{\alpha\beta}= 1/2(\sigma_a + \sigma_b)\f$
+of the respective "SPECIES".
+
+"SHIFT" can be "FORCE" or "POTENTIAL" and determines whether the force or potential, respectively, is shifted to be exactly zero at the cutoff to make them continuous. This improves numerical stability. (Simon thinks this improves energy conservation.)
+
+\subsubsection input_interactions_pairforces_lj_attraction_on_domain INTERACTIONS::PAIRFORCES::LJ::ATTRACTION::ON::DOMAIN
+
+The subgroup "DOMAIN" defines which elements experience attraction.
+
+"SELECT":"ALL" means that all elements experience the attractive part of the potential.
+
+"SELECT":"SPECIES" allows you to define pairs of species that attract each other. For this, also add the corresponding subgroup, e.g.
+"SPECIES":  [["A", "B"]]
+to have the elements of species "A" interact with the elements of species "B".
+
+"SELECT":"ELEMENTS" allows you to define pairs of elements that attract each other. For this, also add the corresponding subgroup, e.g.
+"ELEMENTS": [[["A", "BACK"], ["B", "TRACER"]]]
+to have the "BACK" elements of species "A" attract the "TRACER" elements of species "B" but have all other interactions be repulsive.
+
+\subsubsection input_interactions_pairforces_sc INTERACTIONS::PAIRFORCES::SC
+
+SC currently has no options.
+
+\subsection input_interactions_walls INTERACTIONS::WALLS
+
+This subgroup allows you to define spatial confinement. Currently, you have the choice between circular/spherical walls and straight slabs along the x, y or z direction.
+
+For each wall, define a subgroup with a unique name and list all the names of those subgroups in "DEFINE".
+For example, "DEFINE": ["INNER", "OUTER"] will make the program look for two subgroups called "INNER" and "OUTER". Depending on the type of wall, the program expects slightly different properties.
+
+Coordinates for the walls have to be given in units of [Length].
+
+\subsubsection input_interactions_walls_circular Circular walls
+
+To define a circular wall, define a subgroup with whichever name you give in the "DEFINE" array above. In that subgroup, set "TYPE":"CIRCULAR". The origin of the circle is defined by "ORIGIN":[x,y] in 2D or [x,y,z] in 3D. The radius is given by "RADIUS". 
+
+To confine the elements inside of the wall, set "DIRECTION":"NEGATIVE", to keep the elements outside of the enclosed area, choose "DIRECTION":"POSITIVE".
+
+The interaction of the elements with the walls is the LJ interaction. The energy scale of the wall is given by "EPSILON". If the "ATTRACTIVE" boolean is set to TRUE, the RCUT value is used to determine the largest distance for which the wall-particle interaction is considered. If "ATTRACTIVE" is FALSE, we cut off the potential in the potential minimum, making the force purely repulsive.
+
+We have implemented a cutoff to the strength of the wall force so that the force of the wall never diverges. This also means that particles can penetrate the wall in extreme cases.
+
+\subsubsection input_interactions_walls_slab Slabs
+
+To define a slab wall, i.e. an area between two flat walls between which the elements are trapped, define a subgroup with whichever name you give in the "DEFINE" array above and in that subgroup,  set "TYPE":"SLAB". 
+
+For instance, for a slab that constrains the movement of particles in the z-direction set "DIRECTION":"Z". "ORIGIN" then has to contain the z-coordinates of the two walls, i.e. [lower, upper].
+
+The interaction of the elements with the walls is the LJ interaction. The energy scale of the walls is given by "EPSILON". If the "ATTRACTIVE" boolean is set to TRUE, the RCUT value is used to determine the largest distance for which the wall-particle interaction is considered. If "ATTRACTIVE" is FALSE, we cut off the potential in the potential minimum, making the force purely repulsive.
+
+We have implemented a cutoff to the strength of the wall force so that the force of the wall never diverges. This also means that particles can penetrate the wall in extreme cases.
+
+\subsubsection input_interactions_walls_h_slab Harmonic slab
+
+This is a harmonic slab, which the force will increase as proportional to the distance from the origin. Define a subgroup with whichever name you give in the "DEFINE" array above and in that subgroup, set "TYPE":"H_SLAB".
+
+
+For instance, for a harmonic slab that started from center of a 10^3 box in x-direction, set "DIRECTION":"X", "ORIGIN": 5.
+
+F=k*r, k is the strength of the harmonic potential field, r is the distance from particle to the specified origin. In this case, "EPSILON" is k.
+
+"RCUT" is the effective distance of the potential filed, it has to be smaller than the distance from the origin to the endpoint of the box in the chose direction.
+
+\section init INIT
+
+This section defines the starting configuration for each species defined in section "SPECIES". For each species, declare a subgroup of "INIT" with that species' name. For instance, for a species A, define the subgroup INIT::A and in that subgroup define at least the property "SELECT".
+
+If you want to read particle positions from an hdf5 file, set "SELECT" : "H5", and define a subgroup "H5". 
+You can choose just put location info or plus cell state and velocity info as well. 
+If you just want to have location, "SELECT": "LOCATION". And in the "LOCATION", choose the h5 file you want to use, and specify the group which containing the location info, normally it should looks like: ["run.Last.h5", "R"].   
+If you want to also input cell state and velocity, "SELECT": "ALL".
+And in the "ALL", choose the h5 file you want to use, and specify the group which containing the location, velocity and state. Normally it should looks like: ["run.Last.h5", "R", "Vel", "State"].   
+"RANGE" is the range of the elements of group in h5 file that you want to use. If it’s empty, it would use all the elements in the group. If you specify, it would only read the specified range of elements. E.g. "RANGE":[0,10], this would only input the first ten elements of the group into the program.
+
+
+If you want to define particle positions in the JSON directly, choose "SELECT" : "JSON". The particle coordinates have to be in the range [0,1) and will be scaled by the "BOX" dimensions provided in the "MD" section. 
+
+RANDOM is the number of randomly generated cells.
+
+*/
+

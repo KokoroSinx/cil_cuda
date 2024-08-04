@@ -1,0 +1,561 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 3.81
+# Copyright (C) 2006  Free Software Foundation, Inc.
+# This is free software; see the source for copying conditions.
+# There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE.
+
+# This program built for i386-apple-darwin11.3.0
+ 
+
+# Make data base, printed on Fri Jan  6 10:10:07 2023
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# makefile (from `Makefile', line 3)
+ 
+EXE = x
+# automatic
+@F = $(notdir $@)
+# makefile
+CURDIR := /Users/simonschnyder/Dropbox/Dropbox-Work/PostDoc/cil-Jintao/CIL/Program
+# makefile
+SHELL = /bin/sh
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/make
+# makefile (from `include.mk', line 5)
+CFLAGS = -Ofast -Wall -Wno-unknown-pragmas -Wfatal-errors -DWITHOUT_MPI -D__ArrayExtensions -D__NOARRAY2OPT -fomit-frame-pointer -fstrict-aliasing -Wstrict-aliasing=2 -ffast-math -msse2 -mfpmath=sse -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 -I$(HDF_DIR)/include
+# makefile (from `include.mk', line 1)
+MAKEFILE_LIST :=  Makefile include.mk
+# makefile (from `include.mk', line 12)
+CXXFLAGS = -std=c++11 $(CFLAGS)
+# environment
+__CFBundleIdentifier = com.microsoft.VSCode
+# environment
+VSCODE_CWD = /
+# makefile (from `include.mk', line 4)
+HDF_DIR = /usr/local
+# makefile (from `Makefile', line 9)
+GITFLAG = -DVERSION=\"$(GIT_VERSION)\"
+# environment
+PATH = /usr/local/sbin:/Users/simonschnyder/Dropbox/Dropbox-Work/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/share/dotnet:/opt/X11/bin:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Applications/Xamarin Workbooks.app/Contents/SharedSupport/path-bin
+# makefile (from `Makefile', line 12)
+PROG = cil
+# makefile (from `include.mk', line 10)
+CFLAGSMT = -O3 -msse2 -mfpmath=sse -fno-strict-aliasing -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 -DNDEBUG
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# makefile (from `Makefile', line 10)
+LDFLAGS = -undefined dynamic_lookup
+# default
+.FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
+# environment
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.59WsEabhzH/Listeners
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = /private/tmp/com.apple.launchd.GaaZQWo1SK/org.macosforge.xquartz:0
+# makefile (from `Makefile', line 2)
+OBJS = Random.o Format.o gsd.o Input.o Output.o OutputWriter.o Wall.o MD.o Container.o Colony.o CIL.o
+# environment
+PWD = /Users/simonschnyder/Dropbox/Dropbox-Work/PostDoc/cil-Jintao/CIL/Program
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /Users/simonschnyder
+# default
+MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
+# environment
+VSCODE_CODE_CACHE_PATH = /Users/simonschnyder/Library/Application Support/Code/CachedData/6261075646f055b99068d3688932416f2346dd3b
+# environment
+LOGNAME = simonschnyder
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XPC_FLAGS = 0x0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 2
+# makefile (from `include.mk', line 2)
+CC = clang
+# default
+MAKE_VERSION := 3.81
+# environment
+USER = simonschnyder
+# makefile
+.DEFAULT_GOAL := all
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# makefile (from `include.mk', line 13)
+LINKS = -L$(HDF_DIR)/lib -lhdf5_hl -lhdf5 -lm
+# default
+MAKE_COMMAND := /Applications/Xcode.app/Contents/Developer/usr/bin/make
+# default
+.VARIABLES := 
+# environment
+TMPDIR = /var/folders/v4/ws5p8mfs3vv_wkfw5529m5yh0000gn/T/
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /Users/simonschnyder/Library/Application Support/Code/1.73.1-main.sock
+# environment
+MallocNanoZone = 0
+# environment
+PYTHONPATH = /Users/simonschnyder/Dropbox/Dropbox-Work/python:
+# makefile
+MAKEFLAGS = Rrqp
+# environment
+MFLAGS = -Rrqp
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.60279235.60279241
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from `Makefile', line 8)
+GIT_VERSION := bd15-dirty
+# automatic
++F = $(notdir $+)
+# environment
+__CF_USER_TEXT_ENCODING = 0x1F5:0x0:0x0
+# environment
+COMMAND_MODE = unix2003
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# makefile (from `include.mk', line 3)
+CXX = clang++
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
+# environment
+MAKELEVEL := 0
+# environment
+CLICOLOR = 1
+# environment
+LANG = C
+# environment
+VSCODE_PID = 33166
+# variable set hash-table stats:
+# Load=74/1024=7%, Rehash=0, Collisions=7/118=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 16777225, inode 42203771): 58 files, no impossibilities.
+
+# 58 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+%.o: %.cxx
+#  commands to execute (from `Makefile', line 20):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+%.o: %.cpp
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+%.o: %.c
+#  commands to execute (from `Makefile', line 26):
+	$(CC) -c $< $(CFLAGS) -o $@
+	
+
+%.c:
+
+%.cxx:
+
+%.cpp:
+
+%.o:
+
+%.out:
+
+# 8 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+gsd.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+all: cil
+#  Command-line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/12=0%
+
+ 
+# Not a target:
+.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Input.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+CIL.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 16:55:23
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.cxx:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.SUFFIXES: .c .cxx .cpp .o .out
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Format.o: Format.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Format'
+#  Last modified 2022-07-05 16:44:40
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+Wall.o: Wall.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Wall'
+#  Last modified 2022-07-05 16:55:44
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Colony.o: Colony.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Colony'
+#  Last modified 2022-07-05 16:55:53
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# Not a target:
+include.mk:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-05 16:44:14
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+MD.o: MD.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `MD'
+#  Last modified 2022-07-05 16:55:48
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+OutputWriter.o: OutputWriter.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `OutputWriter'
+#  Last modified 2022-07-05 16:55:43
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+Container.o: Container.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Container'
+#  Last modified 2022-07-05 16:55:50
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# Not a target:
+.out:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Output.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+Input.o: Input.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Input'
+#  Last modified 2022-07-05 16:55:36
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# Not a target:
+Random.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+cil: Random.o Format.o gsd.o Input.o Output.o OutputWriter.o Wall.o MD.o Container.o Colony.o CIL.o
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: `'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := cil
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := Random.o Format.o gsd.o Input.o Output.o OutputWriter.o Wall.o MD.o Container.o Colony.o CIL.o
+# automatic
+# | := 
+# automatic
+# < := Random.o
+# automatic
+# ^ := Random.o Format.o gsd.o Input.o Output.o OutputWriter.o Wall.o MD.o Container.o Colony.o CIL.o
+# automatic
+# ? := Random.o Format.o gsd.o Input.o Output.o OutputWriter.o Wall.o MD.o Container.o Colony.o CIL.o
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=5/21=24%
+#  commands to execute (from `Makefile', line 16):
+	$(CXX) $(OBJS) mt/dSFMT.o -o $@.$(EXE) $(CFLAGS) $(LINKS) $(GITFLAG)
+	$(SIGN)
+	
+
+CIL.o: CIL.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `CIL'
+#  Last modified 2022-07-05 16:56:03
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# Not a target:
+Colony.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 16:52:23
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+.cpp:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  commands to execute (from `Makefile', line 29):
+	rm -f *~ *.o ${PROG}.x
+	
+
+gsd.o: gsd.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `gsd'
+#  Last modified 2022-07-05 16:44:40
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 26):
+	$(CC) -c $< $(CFLAGS) -o $@
+	
+
+# Not a target:
+Format.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 16:52:23
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Wall.cpp:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Output.o: Output.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Output'
+#  Last modified 2022-07-05 16:55:39
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# Not a target:
+MD.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+OutputWriter.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-07 10:28:55
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+# Not a target:
+Container.cpp:
+#  Implicit rule search has been done.
+#  Last modified 2022-04-05 16:52:23
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+
+Random.o: Random.cpp
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: `Random'
+#  Last modified 2022-07-05 16:44:38
+#  File has been updated.
+#  Successfully updated.
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/0=0%
+#  commands to execute (from `Makefile', line 23):
+	$(CXX) -c $< $(CXXFLAGS) $(GITFLAG) -o $@
+	
+
+# files hash-table stats:
+# Load=34/1024=3%, Rehash=0, Collisions=22/132=17%
+# VPATH Search Paths
+
+# No `vpath' search paths.
+
+# No general (`VPATH' variable) search path.
+
+# # of strings in strcache: 2
+# # of strcache buffers: 1
+# strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
+# strcache free: total = 4076 / max = 4076 / min = 4076 / avg = 4076
+
+# Finished Make data base on Fri Jan  6 10:10:07 2023
+
+ 

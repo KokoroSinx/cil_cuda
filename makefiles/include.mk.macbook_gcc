@@ -1,0 +1,21 @@
+# Use with homebew installed gcc instead of apple clang ?
+export CC      = gcc-8
+export CXX     = g++-8
+export HDF_DIR = /opt/hdf5
+#export CFLAGS  = -Ofast -Wall -Wno-unknown-pragmas -Wfatal-errors -Wmisleading-indentation\
+#          -DWITHOUT_MPI -D__ArrayExtensions \
+#          -fomit-frame-pointer -fstrict-aliasing -Wstrict-aliasing=2 -ffast-math \
+#          -msse2 -mfpmath=sse -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 \
+#	  -I$(HDF_DIR)/include
+export CFLAGS  = -Ofast -Wall -Wno-unknown-pragmas -Wfatal-errors -Wmisleading-indentation\
+          -DWITHOUT_MPI -D__ArrayExtensions -D__NOARRAY2OPT -DNDEBUG \
+          -fomit-frame-pointer -fstrict-aliasing -Wstrict-aliasing=2 -ffast-math \
+          -msse2 -mfpmath=sse -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 \
+	  -I$(HDF_DIR)/include -I/usr/local/include
+export CFLAGSMT= -O3 -msse2 -mfpmath=sse -fno-strict-aliasing \
+	 -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 -DNDEBUG \
+         --param max-inline-insns-single=1800 --param inline-unit-growth=500 \
+         --param large-function-growth=900
+export CXXFLAGS = -std=c++11 $(CFLAGS)
+#export LINKS    =  -L$(HDF_DIR)/lib  -lhdf5_hl -lhdf5 -lm
+export LINKS    = -L$(HDF_DIR)/lib  -lhdf5_hl -lhdf5 -lm

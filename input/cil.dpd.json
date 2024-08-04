@@ -1,0 +1,218 @@
+{
+  "UNITS":{
+    "LENGTH"   : 1,
+    "MOTILITY" : 1,
+    "FRICTION" : 1.0000
+  },
+  "MD":{
+    "DIM"     : 3,
+    "GTS"     : 100,
+    "FRAMES"  : 100,
+    "DT"      : {
+      "SELECT" : "MANUAL",
+      "AUTOSCALE": 2.50e-2,
+      "MANUAL": 0.001
+    },
+    "BOX"     : [10.01, 10.01, 10.01],
+    "PBC"     : [true, true, true],
+    "INTEGRATOR":{
+      "SELECT": "DPD",
+      "EULER":{},
+      "STOCHASTIC_EULER":{},
+      "STOCHASTIC_HEUN":{},
+      "DPD":{}
+    },
+    "DPD": {
+      "DISSAMCEL": 4.5,
+      "DISDIFCEL": 4.5,
+      "DISBG"    : 0.0045
+    },
+    "TEMP" : 710.15,
+    "KBT"  : 0.002
+  },
+  "RUNTIME":{
+    "LINKLIST":{
+      "ENABLED" : true,
+      "SORTED"  : true
+    },
+    "RNG":{
+      "SEED" : 260
+    }
+  },
+  "OUTPUT":{
+    "DIR" : "output",
+    "NAME": "test",
+    "FORMAT": ["GSD","H5"]
+  },
+  "SPECIES":{
+    "DEFINE"     : ["A"],
+    "A":{
+      "NELEM"    : 2,
+      "NAMES"    : ["BACK", "FRONT"],
+      "CIL"      : true,
+      "SURFACE_TENSION" : 1,
+      "MOTILITY" : [0, 0],
+      "GROWTH"   : [2, 2],
+      "FRICTION" : [1, 1],
+      "MASS"     : [1, 1],
+      "EXTFORCE" : [0.0, 0.0, 0.0],
+      "NOISE"    : {
+        "PASSIVE" : 0.0,
+        "RADIAL"  : 0.0,
+        "ANGULAR" : 0.0
+      },
+      "PAIRFORCES":{
+        "LJ":{
+          "SIGMA"  : [1, 1],
+          "EPSILON": [2.5e-3, 2.5e-3]
+        },
+        "SC":{
+          "SIGMA_CORE"   :  [1,    1],
+          "EPSILON_CORE" :  [1,    1],
+          "SIGMA_RATIO"   : [0.5,    0.5],
+          "EPSILON_RATIO" : [0.25,   0.25]
+        }
+      },
+      "FENE":{
+        "KAPPA"    : [0.1099397],
+        "RMAX"     : [1],
+        "RMAX_DIVISION": [1]
+      },
+      "DIVISION":{
+        "ENABLED" : true,
+        "SWELLING": true,
+        "TAU_MIGRATION": {"AVG": 16, "SIGMA": 8},
+        "TAU_DIVISION" : {"AVG": 8.0,  "SIGMA": 0.00},
+        "R0"  : 0.05,
+        "Rmin": 0.95
+      },
+      "APOPTOSIS": {
+        "ENABLED":true,
+        "RATE": 0.005
+      }
+    },
+    "D":{
+      "NELEM"    : 1,
+      "NAMES"    : ["FRONT"],
+      "CIL"      : true,
+      "CAD"      : true,
+      "NEG"      : true,
+      "CROSS_ADHESION_SCALING" : 1,
+      "MOTILITY" : [0],
+      "GROWTH"   : [1],
+      "FRICTION" : [0],
+      "MASS"     : [1],
+      "EXTFORCE" : [0.0, 0.0, 0.0],
+      "NOISE"    : {
+        "PASSIVE" : 0.0,
+        "RADIAL"  : 0.0,
+        "ANGULAR" : 0.0
+      },
+      "PAIRFORCES":{
+        "LJ":{
+          "SIGMA"  : [1, 1],
+          "EPSILON": [2.5e-3, 2.5e-3]
+        },
+        "SC":{
+          "SIGMA_CORE"   :  [1],
+          "EPSILON_CORE" :  [1],
+          "SIGMA_RATIO"   : [0.5],
+          "EPSILON_RATIO" : [0.5]
+        }
+      },
+      "FENE":{
+        "KAPPA"    : [0.9099397],
+        "RMAX"     : [1],
+        "RMAX_DIVISION": [1]
+      },
+      "DIVISION":{
+        "ENABLED" : true,
+        "SWELLING": true,
+        "TAU_MIGRATION": {"AVG": 8, "SIGMA": 4},
+        "TAU_DIVISION" : {"AVG": 8.0,  "SIGMA": 0.00},
+        "R0"  : 0.05,
+        "Rmin": 0.955
+      },
+      "APOPTOSIS": {
+        "ENABLED":false,
+        "RATE": 0.005
+      }
+    }
+  },
+  "INTERACTIONS":{
+    "PAIRFORCES":{
+      "SELECT": "LJ",
+      "LJ":{
+        "ATTRACTION": {
+          "SELECT": "ON",
+          "ON":{
+            "RCUT":      1.5,
+            "SHIFT":     "FORCE",
+            "DOMAIN":{
+              "SELECT": "ALL",
+              "ALL" :{},
+              "SPECIES":  [["A", "A"]],
+              "ELEMENTS": [[["A", "BACK"], ["B", "TRACER"]]]
+            }
+          },
+          "OFF":{}
+        }
+      },
+      "SC":{
+        "CROSS-ADHESION_SCALING": 1
+      },
+      "GHOSTS":{}
+    },
+    "WALLS":{
+      "DEFINE": [],
+      "INNER":{
+        "TYPE": "CIRCULAR",
+        "ORIGIN": [25.0, 25.0, 25.0],
+        "RADIUS":  15.0,
+        "EPSILON": 1.0e-3,
+        "DIRECTION": "POSITIVE"
+      },
+      "OUTER":{
+        "TYPE": "CIRCULAR",
+        "ORIGIN": [25.0, 25.0, 25.0],
+        "RADIUS":  16.0,
+
+        "EPSILON": 1.0e-3,
+        "DIRECTION": "NEGATIVE"
+      },
+      "SLAB":{
+        "TYPE": "SLAB",
+        "DIRECTION": "X",
+        "ORIGIN": [0.0, 50.0],
+        "EPSILON": 5.0e-4
+      }
+    }
+  },
+  "INIT":{
+    "A":{
+      "SELECT": "JSON",
+      "H5"  :
+      {
+        "SELECT"   : "ALL",
+        "ALL"      : ["debugging_test2.Last.h5", "R", "Vel", "State"],
+        "LOCATION" : ["debugging_test3.Last.h5", "R"],
+        "RANGE"    : []
+      },
+      "JSON": [[2.3, 2.3,2.3], [2.3, 2.3, 2.4],[4, 4,4], [4, 4, 4.05]],
+      "RANDOM":{
+        "NUMBER" : 100
+      }
+    },
+      "D":{
+        "SELECT": "JSON",
+        "H5"  : {
+          "LOCATION" : ["filled1000.Last.h5", "R_right"],
+          "RANGE"    : []
+        },
+        "JSON": [[3, 3, 3],[2.5, 2.5, 2.5]],
+        "RANDOM":{
+          "NUMBER" : 100
+        }
+      }
+    }
+  }

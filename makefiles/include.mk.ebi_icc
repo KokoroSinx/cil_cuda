@@ -1,0 +1,32 @@
+# icc on 1koza cluster
+CC  = icc
+CXX = icpc
+ARCH=linux-x86_64_icc
+SHAREDIR= /opt/visit/thirdparty/2.13.2/shared/icc
+HDF_DIR = $(SHAREDIR)/hdf5/1.8.14/$(ARCH)
+#CFLAGS += -O3 -xSSSE3 -axAVX,SSE4.2,SSE4.1,SSSE3,SSE3,SSE2 \
+#       -Wall -DWITHOUT_MPI -D__ArrayExtensions -DNDEBUG \
+#       -fomit-frame-pointer -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 \
+#       -I$(HDF_DIR)/include -I/usr/local/include
+CFLAGS += -O3 -xSSSE3 -axAVX,SSE4.2,SSE4.1,SSSE3,SSE3,SSE2 \
+       -Wall -DWITHOUT_MPI -D__ArrayExtensions -D__NOARRAY2OPT -DNDEBUG \
+       -fomit-frame-pointer -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 \
+       -I$(HDF_DIR)/include -I/usr/local/include
+CFLAGSMT= -O3 -xSSSE3 -axAVX,SSE4.2,SSE4.1,SSSE3,SSE3,SSE2 \
+         -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 -DNDEBUG \
+         --param max-inline-insns-single=1800 --param inline-unit-growth=500 \
+         --param large-function-growth=900
+CXXFLAGS = -std=c++11 $(CFLAGS)
+LINKS    = -L$(HDF_DIR)/lib -lhdf5_hl -lhdf5 -lm
+
+
+# CFLAGS += -O3 -fopenmp -xSSSE3 -axAVX,SSE4.2,SSE4.1,SSSE3,SSE3,SSE2 \
+#        -Wall -no-multibyte-chars -DWITHOUT_MPI -D__ArrayExtensions -D__NOARRAY2OPT \
+#        -fomit-frame-pointer -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 \
+#       -I$(HDF_DIR)/include -I/usr/local/include -DNDEBUG
+# CFLAGSMT= --O3 -xSSSE3 -axAVX,SSE4.2,SSE4.1,SSSE3,SSE3,SSE2 \
+#          -DHAVE_SSE2=1 -DDSFMT_MEXP=19937 -no-multibyte-chars\
+#          --param max-inline-insns-single=1800 --param inline-unit-growth=500 \
+#          --param large-function-growth=900 -DNDEBUG
+# CXXFLAGS = -std=c++11 -no-multibyte-chars $(CFLAGS)
+# LINKS    = -L$(HDF_DIR)/lib -lhdf5_hl -lhdf5 -lm

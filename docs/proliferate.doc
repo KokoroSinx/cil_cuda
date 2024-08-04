@@ -1,0 +1,6 @@
+/*!
+\page proliferate Birth and death
+
+The input file contains all parameters and information necessary for starting a simulation run. The files have to be formatted in json. The parameters are grouped roughly.
+
+*/
